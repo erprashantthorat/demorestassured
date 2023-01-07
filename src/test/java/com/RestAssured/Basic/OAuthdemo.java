@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import files.CodeTrimmer;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.path.json.JsonPath;
 
@@ -26,9 +27,11 @@ public class OAuthdemo {
 		 * driver.findElement(By.cssSelector("[type='password']")).sendKeys("Phoenix@92"
 		 * ); driver.findElement(By.xpath("//span[contains(text(),'Next')]")).click();
 		 */
+		CodeTrimmer ct  = new CodeTrimmer();
 		String curUrl ="https://rahulshettyacademy.com/getCourse.php?state=verifyfjdds&code=4%2F0AWgavdeU6Er8JSohCGXuAWlMx7BFLjY25Embpivgc2fOX2jZHNdnJZEhM1C6qVuKvcPRhA&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent";
-		String partialcode = curUrl.split("code=")[1];
-		String code = partialcode.split("&scope")[0];
+		String code = ct.codetrim(curUrl);
+		
+		
 		
 		
 		String accessTokenRes = given().urlEncodingEnabled(false)
